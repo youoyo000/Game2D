@@ -124,6 +124,23 @@ fun Start(m: Modifier, game: Game){
 
     )
 
+    Image(
+        painter = painterResource(id = virusImage[game.Virus2.pictNo]),
+        contentDescription = "病毒",
+        modifier = Modifier
+            .size(80.dp)
+            .offset { IntOffset(game.Virus2.x, game.Virus2.y) }
+            .pointerInput(Unit) {  //觸控病毒往上，扣一秒鐘
+                detectTapGestures(
+                    onTap = {
+                        game.Virus2.y -= 40
+                        game.counter -= 25
+                    }
+                )
+            }
+
+    )
+
 
     if (msg == "遊戲暫停" && !game.isPlaying){
         msg = "遊戲結束，按此按鍵重新開始遊戲"
